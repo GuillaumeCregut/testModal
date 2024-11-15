@@ -41,14 +41,6 @@ final class TestController extends AbstractController
         ]);
     }
 
-    #[Route('/show/{id}', name: 'app_test_show', methods: ['GET'])]
-    public function show(Test $test): Response
-    {
-        return $this->render('test/show.html.twig', [
-            'test' => $test,
-        ]);
-    }
-
     #[Route('/{id}/edit', name: 'app_test_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Test $test, EntityManagerInterface $entityManager): Response
     {
