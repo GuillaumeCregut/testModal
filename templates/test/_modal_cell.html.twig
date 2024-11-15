@@ -1,0 +1,19 @@
+ <div {{ stimulus_controller('modal') }}>
+    <button data-action="click->modal#open">Use modal</button>
+    <div class="background" {{ stimulus_target('modal', 'myBackground') }}>
+        <dialog {{ stimulus_target('modal', 'myDialog') }}>
+        {# Ici le turbo frame #}
+            <turbo-frame id="product_{{ test.id }}">
+                Id :
+                {{ test.id }}<br>
+                Name :
+                {{ test.name }}<br>
+                Firstname :
+                {{ test.firstname }}
+                <a href="{{ path('app_test_edit', {'id': test.id}) }}">edit</a>
+            </turbo-frame>
+        {# Fin du turboframe     #}
+            <button data-action="click->modal#close" data-turbo="true">Close</button>
+        </dialog>
+    </div>
+</div>
