@@ -6,28 +6,16 @@ use App\Entity\Test;
 use App\Form\TestType;
 use App\Repository\TestRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\UX\Turbo\TurboStreamResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\UX\Turbo\Helper\TurboStream;
 
 final class TestController extends AbstractController
 {
-    #[Route('/{id}', name: 'app_test_index', methods: ['GET'])]
-    public function index(TestRepository $testRepository, int $id = 0): Response
+    #[Route('/', name: 'app_test_index', methods: ['GET'])]
+    public function index(TestRepository $testRepository, Request $request,int $id = 0): Response
     {
-        if ($id > 0) {
-            $test = $testRepository->find($id);
-            if ($test) {
-                // return new TurboStreamResponse(
-                //     $this->render('', ['test' => $test]),
-                //     'replace',
-                //     'test_' . $test->getId()
-                // );
-            }
-        }
         return $this->render('test/index.html.twig', [
             'tests' => $testRepository->findAll(),
         ]);
@@ -53,7 +41,7 @@ final class TestController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_test_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_test_show', methods: ['GET'])]
     public function show(Test $test): Response
     {
         return $this->render('test/show.html.twig', [
@@ -90,12 +78,5 @@ final class TestController extends AbstractController
         return $this->redirectToRoute('app_test_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/modal/{id}', name: 'app_test_modal')]
-    public function modal(Test $test): Response
-    {
-        return $this->render('test/edit_modal.html.twig', [
-            // 'form' => $form->createView(),
-            'product' => $test,
-        ]);
-    }
+   
 }

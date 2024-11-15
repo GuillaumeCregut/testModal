@@ -1,0 +1,14 @@
+ <div {{ stimulus_controller('modal') }}>
+    <button data-action="click->modal#open">Use modal</button>
+    <div class="background" {{ stimulus_target('modal', 'myBackground') }}>
+        <dialog {{ stimulus_target('modal', 'myDialog') }}>
+            Id :
+            {{ test.id }}<br>
+            Name :
+            {{ test.name }}<br>
+            Firstname :
+            {{ test.firstname }}
+            <button data-action="click->modal#close" data-turbo="true">Close</button>
+        </dialog>
+    </div>
+</div>

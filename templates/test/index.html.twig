@@ -25,8 +25,8 @@
                     <a href="{{ path('app_test_show', {'id': test.id}) }}">show</a>
                     <a href="{{ path('app_test_edit', {'id': test.id}) }}">edit</a>
                 </td>
-                <td>
-                Use modal
+                <td class="modal-container">
+                 {{ include('test/_modal_cell.html.twig', {test: test}) }}
                 </td>
             </tr>
         {% else %}
