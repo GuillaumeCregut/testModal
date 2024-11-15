@@ -52,7 +52,9 @@ final class TestController extends AbstractController
     #[Route('/{id}/edit', name: 'app_test_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Test $test, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(TestType::class, $test);
+        $form = $this->createForm(TestType::class, $test,[
+            'action' =>$this->generateUrl('app_test_edit', array('id'=>$test->getId()))
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -61,7 +63,7 @@ final class TestController extends AbstractController
             return $this->redirectToRoute('app_test_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('test/edit.html.twig', [
+        return $this->render('test/edit_modal.html.twig', [
             'test' => $test,
             'form' => $form,
         ]);
