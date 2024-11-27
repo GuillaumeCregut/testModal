@@ -1,0 +1,106 @@
+<div{{ attributes }}>
+    {{ form_start(form) }}
+    <div class="quotation-info">
+        {{ form_row(form.quotationId, {
+                    label: 'Référence du devis',
+                    value: 'something'
+                })
+        }}
+    </div>
+    <div class="quotation-line-container">
+        <table class="quotation-line">
+            <thead>
+                <tr>
+                    <th>Désignation</th>
+                    <th>Description</th>
+                    <th>Quantité</th>
+                    <th>Prix</th>
+                    <th>TVA</th>
+                    <th>Remise</th>
+                    <th>Total HT</th>
+                    <th>Total TTC</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item_form in form.quotationLines %}
+                    <tr>
+                        <td>
+                            {{ form_row(item_form.itemReference, {
+                            label: false,
+                            row_attr: {class: 'mb-1'},
+                            }) }}
+                        </td>
+                        <td>
+                            {{ form_row(item_form.description, {
+                            label: false,
+                            row_attr: {class: 'mb-1'},
+                            attr: {
+                                placeholder: 'Ajoute un truc'
+                            }
+                            }) }}
+                        </td>
+                        <td>
+                            {{ form_row(item_form.quantity, {
+                            label: false,
+                            row_attr: {class: 'mb-1'},
+                            attr: {
+                                placeholder: 'Ajoute un truc'
+                            }
+                            }) }}
+                        </td>
+                        <td>
+                        {{ form_row(item_form.price, {
+                            label: false,
+                            row_attr: {class: 'mb-1'},
+                            attr: {
+                                placeholder: 'Ajoute un truc'
+                            }
+                            }) }}
+                        </td>
+                        <td>
+                        {{ form_row(item_form.vat, {
+                            label: false,
+                            row_attr: {class: 'mb-1'},
+                            attr: {
+                                placeholder: 'Ajoute un truc'
+                            }
+                            }) }}
+                        </td>
+                        <td>
+                        {{ form_row(item_form.discount, {
+                            label: false,
+                            row_attr: {class: 'mb-1'},
+                            attr: {
+                                placeholder: 'Ajoute un truc'
+                            }
+                            }) }}
+                        </td>
+                        <td>
+                        Total
+                        </td>
+                        <td>
+                            Total TTC
+                        </td>
+                        <td>
+                            {{ form_row(item_form.vars.button_delete,{label: 'X', attr: {class: 'btn btn-outline-danger'}}) }}
+                        </td>
+                    </tr>
+                    
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">Total </td>
+                    <td>prix HT</td>
+                    <td>prix TTC</td>
+                </tr>
+            </tfoot>
+        </table>
+         {{ form_widget(form.quotationLines.vars.button_add,{
+        label: 'Ajouter un item',
+        attr: {class: 'btn btn-primary'}
+    }) }}
+    </div>
+    <button class="btn btn-success" type="submit" formnovalidate>Enregistrer</button>
+        {{ form_end(form) }}
+</div>
