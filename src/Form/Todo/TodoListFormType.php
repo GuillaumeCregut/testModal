@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Todo;
 
 use App\Entity\TodoList;
 use Symfony\Component\Form\AbstractType;

@@ -3,7 +3,7 @@
 namespace App\Twig\Components;
 
 use App\Entity\TodoList;
-use App\Form\TodoListFormType;
+use App\Form\Todo\TodoListFormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;

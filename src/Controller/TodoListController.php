@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\TodoItem;
 use App\Entity\TodoList;
-use App\Form\TodoListFormType;
+use App\Form\Todo\TodoListFormType;
 use App\Repository\TodoListRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
