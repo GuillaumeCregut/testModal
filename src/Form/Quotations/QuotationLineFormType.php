@@ -4,10 +4,11 @@ namespace App\Form\Quotations;
 
 use App\Entity\Product;
 use App\Entity\QuotationLine;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class QuotationLineFormType extends AbstractType
 {

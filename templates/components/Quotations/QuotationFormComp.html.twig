@@ -23,8 +23,8 @@
             </thead>
             <tbody>
                 {% for item_form in form.quotationLines %}
-                   <twig:Quotations:QuotationLineComp :item_form="item_form" :quotation="quotation" />
-                    
+                   {# <twig:Quotations:QuotationLineComp item_form="item_form" quotation="quotation" /> #}
+                     {{ include('quotations/_quotationLine.hml.twig', {item_form: item_form}) }}
                 {% endfor %}
             </tbody>
             <tfoot>

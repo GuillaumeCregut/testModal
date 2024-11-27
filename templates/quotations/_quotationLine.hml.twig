@@ -1,0 +1,70 @@
+<tr {{ stimulus_controller('quotation') }}>
+	<td>
+		{{ form_row(item_form.itemReference, {
+        label: false,
+        row_attr: {class: 'mb-1'},
+        }) }}
+	</td>
+	<td>
+		{{ form_row(item_form.description, {
+        label: false,
+        row_attr: {class: 'mb-1'},
+        attr: {
+            placeholder: 'Ajoute un truc',
+        }
+        }) }}
+	</td>
+	<td>
+		{{ form_row(item_form.quantity, {
+        label: false,
+        row_attr: {class: 'mb-1'},
+        attr: {
+            placeholder: 'Ajoute un truc',
+            'data-action': 'quotation#changeQtty',
+            'data-quotation-target': 'quantity'
+        }
+        }) }}
+	</td>
+	<td>
+		{{ form_row(item_form.price, {
+        label: false,
+        row_attr: {class: 'mb-1'},
+        attr: {
+            placeholder: 'Ajoute un truc',
+            'data-action': 'quotation#changePrice',
+            'data-quotation-target': 'price'
+        }
+        }) }}
+	</td>
+	<td>
+		{{ form_row(item_form.vat, {
+        label: false,
+        row_attr: {class: 'mb-1'},
+        attr: {
+            placeholder: 'Ajoute un truc',
+            'data-action': 'quotation#changeVat',
+            'data-quotation-target': 'vat'
+        }
+        }) }}
+	</td>
+	<td >
+		{{ form_row(item_form.discount, {
+        label: false,
+        row_attr: {class: 'mb-1'},
+        attr: {
+            placeholder: 'Ajoute un truc',
+            'data-action': 'quotation#changeDiscount',
+            'data-quotation-target': 'discount'
+        }
+        }) }}
+	</td>
+	<td>
+		<span data-live-ignore data-quotation-target="htPrice" data-value=0></span>
+	</td>
+	<td>
+		<span  data-live-ignore {{ stimulus_target('quotation', 'ttcPrice') }} data-value="0"></span>
+	</td>
+	<td>
+		{{ form_row(item_form.vars.button_delete,{label: 'X', attr: {class: 'btn btn-outline-danger'}}) }}
+	</td>
+</tr>

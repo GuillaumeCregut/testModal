@@ -4,7 +4,6 @@ namespace App\Twig\Components\Quotations;
 
 use App\Entity\Quotation;
 use Symfony\Component\Form\FormInterface;
-use App\Form\Quotations\QuotationFormType;
 use App\Form\Quotations\QuotationLineFormType;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
@@ -22,12 +21,12 @@ final class QuotationLineComp extends AbstractController
     public QuotationLineFormType $formLine;
 
     #[LiveProp()]
-    public ?Quotation $quotation; 
+    public ?string $quotation; 
 
     protected function instantiateForm(): FormInterface
     {
         return $this->createForm(
-            QuotationFormType::class,
+            QuotationLineFormType::class,
             $this->quotation,
             ['method' => 'POST']
         );
