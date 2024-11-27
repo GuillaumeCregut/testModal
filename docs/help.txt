@@ -1,0 +1,4 @@
+Ce que je veux faire :
+Pour chaque ligne de devis, quand je selectionne un produit (à gauche), les valeurs du formulaire se remplissent.
+Si je change un prix, ou une quantité (ou tout ce qui change le total), ce total de la ligne se met à jour
+Bonus : le total général se mets à jour en direct aussi.
