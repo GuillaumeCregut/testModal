@@ -1,0 +1,54 @@
+<div{{ attributes }}>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-4">
+            {{ form_row(form.name, {
+                label: false,
+                attr: {
+                    placeholder: 'Donner un nom à la liste'
+                }
+            }) }}
+        </div>
+    </div>
+
+    <table class="table table-borderless form-no-mb">
+        <thead>
+            <tr>
+            <td>Item</td>
+            <td>Priority</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item_form in form.todoItems %}
+            <tr>
+                <td>
+                    {{ form_row(item_form.description, {
+                        label: false,
+                        row_attr: {class: 'mb-1'},
+                        attr: {
+                            placeholder: 'Ajoute un truc'
+                        }
+                    }) }}
+                </td>
+                <td>
+                    {{ form_row(item_form.priority, {
+                        row_attr: {class: ''},
+                        label: false,
+                    }) }}
+                </td>
+                <td>
+                    {{ form_row(item_form.vars.button_delete,{label: 'X', attr: {class: 'btn btn-outline-danger'}}) }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {{ form_widget(form.todoItems.vars.button_add,{
+        label: 'Ajouter un item',
+        attr: {class: 'btn btn-primary'}
+    }) }}
+
+    <button class="btn btn-success" type="submit" formnovalidate>Enregistrer</button>
+    {{ form_end(form) }}
+</div>
