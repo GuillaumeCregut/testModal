@@ -1,54 +1,19 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-    static targets = ['htPrice', 'ttcPrice', 'price', 'quantity', 'vat', 'discount'];
-    changePrice(event) {
-        const price = this.priceTarget.value;
-        if (isNaN(price)) {
-            event.target.value = '';
-            console.log('Veuillez entrer un prix valide');
-            return;
-        }
-        console.log('quantité : ' + this.quantityTarget.value);
-        this.calculatePrice();
-    }
+    static targets= ['ttcPrice','htPrice', 'htTotalPrice','ttcTotalPrice'];
 
-    changeQtty(event) {
-        this.calculatePrice();
-    }
+    updatePrice(event) {
+        let ttcPrice = 0;
+        this.ttcPriceTargets.forEach((price)=>{
+            ttcPrice+=parseFloat(price.dataset.value);
+        })
+        this.ttcTotalPriceTarget.textContent = ttcPrice.toFixed(2);
 
-    changeVat(event) {
-        this.calculatePrice();
+        let htPrice = 0;
+        this.htPriceTargets.forEach((price)=>{
+            htPrice+=parseFloat(price.dataset.value);
+        })
+        this.htTotalPriceTarget.textContent = htPrice.toFixed(2);
     }
-
-    changeDiscount(event) {
-        this.calculatePrice();
-    }
-    calculatePrice() {
-        const price = this.priceTarget.value ?? 0;
-        const qtty = this.quantityTarget.value ?? 0;
-        let vat = this.vatTarget.value ?? 0;
-        const discount = this.discountTarget.value ?? 0;
-        const htPrice = (price * qtty) - discount; 
-        let ttcPrice ;
-        if(vat>0) {
-            ttcPrice = htPrice * (1 + vat/100);
-        } else {
-            ttcPrice = htPrice;
-        }
-        this.htPriceTarget.dataset.value = htPrice.toFixed(2);
-        this.ttcPriceTarget.dataset.value = ttcPrice.toFixed(2);
-        this.ttcPriceTarget.textContent = this.ttcPriceTarget.dataset.value;
-        this.htPriceTarget.textContent = this.htPriceTarget.dataset.value;
-        this.displayPrice(htPrice.toFixed(2), ttcPrice.toFixed(2));
-    }
-
-    displayPrice(htPrice, ttcPrice) {
-        this.ttcPriceTarget.textContent = ttcPrice;
-        this.htPriceTarget.textContent = htPrice;
-        console.log(`new Display ht : ${htPrice}  - ${ttcPrice}`);
-    }
-
- 
-    
 }

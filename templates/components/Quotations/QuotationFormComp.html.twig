@@ -8,9 +8,10 @@
         }}
     </div>
     <div class="quotation-line-container">
-        <table class="quotation-line">
+        <table class="quotation-line"  {{ stimulus_controller('quotation') }}>
             <thead>
                 <tr>
+                    <th>Référence produit</th>
                     <th>Désignation</th>
                     <th>Description</th>
                     <th>Quantité</th>
@@ -23,15 +24,14 @@
             </thead>
             <tbody>
                 {% for item_form in form.quotationLines %}
-                   {# <twig:Quotations:QuotationLineComp item_form="item_form" quotation="quotation" /> #}
                      {{ include('quotations/_quotationLine.hml.twig', {item_form: item_form}) }}
                 {% endfor %}
             </tbody>
             <tfoot>
-                <tr>
+                <tr  data-action= "quotationLine:updated@window->quotation#updatePrice">
                     <td colspan="6">Total </td>
-                    <td>prix HT</td>
-                    <td>prix TTC</td>
+                    <td><span  data-live-ignore {{ stimulus_target('quotation', 'htTotalPrice') }} >0.00</span></td>
+                    <td><span  data-live-ignore {{ stimulus_target('quotation', 'ttcTotalPrice') }}>0.00</span></td>
                 </tr>
             </tfoot>
         </table>

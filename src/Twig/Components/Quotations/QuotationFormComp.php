@@ -8,37 +8,31 @@ use App\Form\Quotations\QuotationFormType;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\LiveComponent\LiveCollectionTrait;
+use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use Symfony\UX\LiveComponent\Attribute\LiveListener;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\UX\LiveComponent\ComponentToolsTrait;
 
 #[AsLiveComponent]
 final class QuotationFormComp extends AbstractController
 {
     use DefaultActionTrait;
+    use ComponentToolsTrait;
     use LiveCollectionTrait;
 
     #[LiveProp(fieldName: 'formData')]
     public ?Quotation $quotation;
-
-    #[LiveProp(writable: true)]
-    public float $totalValueHT=0;
-
-    #[LiveProp(writable: true)]
-    public float $totalValueTTC=0;
-
-    public function calculateTotalValueTTC(float $totalValueHT): float
+   
+    #[LiveAction]
+    public function refresh()
     {
-        $totalValueTTC = $totalValueHT * 1.2;
-        return $totalValueTTC;
+        $this->dispatchBrowserEvent('quotationLine:updated');
     }
 
-    public function calculateTotalValueHT(float $totalValueTTC): float
-    {
-        $totalValueHT = $totalValueTTC / 1.2;
-        return $totalValueHT;
-    }
     protected function instantiateForm(): FormInterface
     {
+        $this->refresh();
         return $this->createForm(
             QuotationFormType::class,
             $this->quotation,
