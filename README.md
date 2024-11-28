@@ -2,11 +2,18 @@
 
 Simple project to test stimulus and turbo frames to make an interactive dashboard.
 
-Interessants things are :
+Interessants things are, in this part :
 
- - assets/controllers/modal_controller.js
- - src/Controller/TestController.php
- - templates/tests/*
+ - assets/controllers/quotation_controller.js
+ - assets/controllers/quotationLine_controller.js
+ - src/Controller/Quotations/QuotationController.php
+ - src/Twig/Components/Quotations/*
+ - src/Entity/Quotation.php
+ - src/Entity/QuotationLine.php
+ - src/Form/Quotations/*
+ - templates/components/Quotations/*
+ - templates/quotations/*
+ 
 
 ## Installation
 clone this repo.
