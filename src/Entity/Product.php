@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -20,15 +21,18 @@ class Product
     #[ORM\Column]
     #[Assert\NotBlank()]
     #[Assert\Positive()]
+    #[Groups("default")]
     private ?float $price = null;
 
     #[ORM\Column]
     #[Assert\NotBlank()]
     #[Assert\PositiveOrZero()]
     #[Assert\LessThanOrEqual(100)]
+    #[Groups("default")]
     private ?float $tva = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups("default")]
     private ?string $description = null;
 
     #[ORM\Column(nullable: true)]
@@ -36,6 +40,7 @@ class Product
     private ?float $purchasePrice = 0;
 
     #[ORM\Column(length: 255)]
+    #[Groups("default")]
     private ?string $designation = null;
 
     /**

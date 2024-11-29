@@ -3,7 +3,11 @@
 		{{ form_row(item_form.itemReference, {
         label: false,
         row_attr: {class: 'mb-1'},
-        
+        attr: {
+            placeholder: '0',
+            'data-action': 'quotationLine#changeProduct',
+            'data-quotationLine-target': 'product'
+        }
         }) }}
 	</td>
     <td>
@@ -12,6 +16,8 @@
         row_attr: {class: 'mb-1'},
          attr: {
             placeholder: 'saisir une désignation',
+            'data-quotationLine-target': 'designation',
+             'data-live-ignore': true
         }
         }) }}
 	</td>
@@ -21,6 +27,8 @@
         row_attr: {class: 'mb-1'},
         attr: {
             placeholder: 'saisir une description',
+            'data-quotationLine-target': 'description',
+             'data-live-ignore': true
         }
         }) }}
 	</td>
@@ -31,7 +39,8 @@
         attr: {
             placeholder: '0',
             'data-action': 'quotationLine#changeQtty',
-            'data-quotationLine-target': 'quantity'
+            'data-quotationLine-target': 'quantity',
+            
         }
         }) }}
 	</td>
@@ -42,7 +51,8 @@
         attr: {
             placeholder: '0',
             'data-action': 'quotationLine#changePrice',
-            'data-quotationLine-target': 'price'
+            'data-quotationLine-target': 'price',
+             'data-live-ignore': true
         }
         }) }}
 	</td>
@@ -53,7 +63,8 @@
         attr: {
             placeholder: '0',
             'data-action': 'quotationLine#changeVat',
-            'data-quotationLine-target': 'vat'
+            'data-quotationLine-target': 'vat',
+             'data-live-ignore': true
         }
         }) }}
 	</td>
@@ -64,7 +75,8 @@
         attr: {
             placeholder: '0',
             'data-action': 'quotationLine#changeDiscount',
-            'data-quotationLine-target': 'discount'
+            'data-quotationLine-target': 'discount',
+           
         }
         }) }}
 	</td>
